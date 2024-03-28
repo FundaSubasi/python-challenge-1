@@ -206,9 +206,8 @@ for item in order:
 
     totals.append(item_price * item_quantity)
 
-
 # 11. Calculate the cost of the order using list comprehension
 # Multiply the price by quantity for each item in the order list, then sum()
 # and print the prices.
 total_price = sum(totals)
-print(f"\nTotal price: ${total_price}\n")
+print(f"\nTotal price: ${total_price:.2f}\n")
