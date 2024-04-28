@@ -138,6 +138,8 @@ while place_order:
                     # Check if the quantity is a number, default to 1 if not
                     if not quantity.isdigit():
                         quantity = 1
+                    else:
+                        quantity = int(quantity)
 
                     # Add the item name, price, and quantity to the order list
                     order.append({"Item name": item_name, "Price": item_price, "Quantity": quantity})
@@ -157,24 +159,19 @@ while place_order:
 
     while True:
         # Ask the customer if they would like to order anything else
-        keep_ordering = input("Would you like to keep ordering? (Y)es or (N)o ")
+        keep_ordering = input("Would you like to keep ordering? (Y)es or (N)o ").lower()
 
-        # 5. Check the customer's input
-        if keep_ordering.lower() == 'y':
-            # Keep ordering
-            print("Keep ordering")
-            break
-        elif keep_ordering.lower() == 'n':
-            # Since the customer decided to stop ordering, thank them for
-            # their order
-            # Exit the keep ordering question loop
-            # Complete the order
-            place_order = False
-            print("Thank you for your order.")
-            break
-        else:
-            # Tell the customer to try again
-            print("Invalid selection. Please try again.")
+        match keep_ordering:
+            case 'y':
+                print("Keep ordering")
+                # Additional logic for ordering
+                break
+            case 'n':
+                place_order = False
+                print("Thank you for your order.")
+                break
+            case _:
+                print("Invalid selection. Please try again.")
 
 # Print out the customer's order
 print("This is what we are preparing for you.\n")
